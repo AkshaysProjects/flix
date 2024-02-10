@@ -12,6 +12,9 @@ const tvShowSchema = new mongoose.Schema({
   rating: {
     type: Number,
   },
+  rated: {
+    type: String,
+  },
   language: {
     type: String,
     required: true,
@@ -37,6 +40,9 @@ const tvShowSchema = new mongoose.Schema({
     type: [String],
   },
   homepage: {
+    type: String,
+  },
+  bannerUrl: {
     type: String,
   },
   posterUrl: {

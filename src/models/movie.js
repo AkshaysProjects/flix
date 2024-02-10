@@ -12,6 +12,9 @@ const movieSchema = new mongoose.Schema({
   rating: {
     type: Number,
   },
+  rated: {
+    type: String,
+  },
   runtime: {
     type: Number,
   },
@@ -38,6 +41,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   homepage: {
+    type: String,
+  },
+  bannerUrl: {
     type: String,
   },
   posterUrl: {
