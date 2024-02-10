@@ -9,10 +9,7 @@ const DATABASE_URL =
 
 // Connect to MongoDB using Mongoose
 mongoose
-  .connect(DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(DATABASE_URL, { authSource: "admin" })
   .then(() => console.log("Connected to database successfully"))
   .catch((err) => console.error("Database connection error:", err));
 
