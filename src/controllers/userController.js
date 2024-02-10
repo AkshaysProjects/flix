@@ -2,6 +2,7 @@ const db = require("../db");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 // Create a new user
 const createUser = async (req, res) => {
@@ -114,4 +115,32 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser };
+const getUser = async (req, res) => {
+  try {
+    // Fetch the users collection from the database
+    const Users = await db.collection("Users");
+
+    // Fetch the user with the given email or username
+    const user = await Users.findOne(
+      { _id: new ObjectId(req.user._id) },
+      { projection: { password_hashed: 0 } }
+    );
+
+    // If user does not exist return 404 Not Found
+    if (!user) {
+      return res
+        .status(404) // 404 Not Found
+        .json({ success: false, message: "User does not exist" });
+    } else {
+      res.status(200).json({
+        success: true,
+        user: user,
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Error fetching user" });
+  }
+};
+
+module.exports = { createUser, loginUser, getUser };
