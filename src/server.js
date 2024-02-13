@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const movieRoutes = require("./routes/movieRoutes");
 const tvShowRoutes = require("./routes/tvShowRoutes");
@@ -7,6 +8,9 @@ const authenticateToken = require("./middlewares/authenticateToken");
 
 // Initialize express application
 const app = express();
+
+// Middleware to enable CORS
+app.use(cors());
 
 // Middleware to parse the request body as JSON
 app.use(express.json());
