@@ -24,8 +24,6 @@ app.get("/", (req, res) => {
 app.use("/user", userRoutes);
 
 // Use the authenticateToken middleware to protect the /movie, /tvshow and /watchlist endpoints
-app.use("/movies", authenticateToken);
-app.use("/tvshows", authenticateToken);
 app.use("/watchlist", authenticateToken);
 
 // Use the movie routes for the /movie endpoint
