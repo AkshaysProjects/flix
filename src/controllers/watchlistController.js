@@ -51,7 +51,7 @@ const addToWatchlist = async (req, res) => {
     const watchlist = req.user.watchlist;
 
     // Check if the movie or tvShow is already in the user's watchlist
-    if (watchlist.includes(id)) {
+    if (watchlist.filter((item) => String(item._id) === id).length > 0) {
       res.status(400).json({ message: "Already in watchlist" }); // 400 Bad Request
       return;
     }
