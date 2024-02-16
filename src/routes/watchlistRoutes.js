@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getWatchlist,
+  getWatchlistDetails,
   addToWatchlist,
   deleteFromWatchlist,
 } = require("../controllers/watchlistController");
@@ -8,8 +9,11 @@ const {
 // Initialize express router
 const watchlistRoute = express.Router();
 
-// Get all bookmarks
+// Get all watchlist
 watchlistRoute.get("/", getWatchlist);
+
+// Get all watchlist with details
+watchlistRoute.get("/details", getWatchlistDetails);
 
 // Add a bookmark
 watchlistRoute.post("/:id", addToWatchlist);

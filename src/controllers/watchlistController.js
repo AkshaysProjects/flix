@@ -104,9 +104,51 @@ const deleteFromWatchlist = async (req, res) => {
   }
 };
 
+// Get watchlist details
+const getWatchlistDetails = async (req, res) => {
+  // Get the movie or tvShow ID from the request parameters
+  const { id } = req.params;
+  try {
+    // Fetch the Users collection from the database
+    const Users = await db.collection("Users");
+
+    // Check if the movie or tvShow is in the user's watchlist
+    let watchlist = req.user.watchlist;
+
+    // Get all watchlist items
+    const watchlistItems = await Promise.all(
+      watchlist.map(async (item) => {
+        const collectionName = item.type === "movie" ? "Movies" : "Shows";
+        const collection = db.collection(collectionName);
+        return await collection.findOne(
+          { _id: new ObjectId(item._id) },
+          {
+            projection: {
+              title: 1,
+              bannerUrl: 1,
+              releaseDate: 1,
+              firstAirDate: 1,
+              lastAirDate: 1,
+              rated: 1,
+              type: 1,
+            },
+          }
+        );
+      })
+    );
+
+    // Send the watchlist items back to the client
+    res.status(200).json(watchlistItems);
+  } catch (err) {
+    // Log the error to the console
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 // Export the controller functions
 module.exports = {
   getWatchlist,
+  getWatchlistDetails,
   addToWatchlist,
   deleteFromWatchlist,
 };
