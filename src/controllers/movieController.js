@@ -79,7 +79,7 @@ const getMovie = async (req, res) => {
           title: 1,
           releaseDate: 1,
           rating: 1,
-          plot: 1,
+          summary: 1,
           genres: 1,
           runtime: 1,
           language: 1,

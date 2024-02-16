@@ -95,7 +95,7 @@ const getTVShow = async (req, res) => {
           firstAirDate: 1,
           lastAirDate: 1,
           rating: 1,
-          plot: 1,
+          summary: 1,
           genres: 1,
           runtime: 1,
           language: 1,
