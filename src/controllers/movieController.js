@@ -13,7 +13,7 @@ const getMovies = async (req, res) => {
     // Fetch all movies
     const movies = await Movies.find(
       {},
-      { projection: { title: 1, bannerUrl: 1, releaseDate: 1, rated: 1 } }
+      { projection: { title: 1, bannerUrl: 1, releaseDate: 1, type: 1 } }
     )
       .skip(offset)
       .limit(20)

@@ -3,6 +3,7 @@ const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const movieRoutes = require("./routes/movieRoutes");
 const tvShowRoutes = require("./routes/tvShowRoutes");
+const trendingRoutes = require("./routes/trendingRoutes");
 const watchlistRoutes = require("./routes/watchlistRoutes");
 const authenticateToken = require("./middlewares/authenticateToken");
 
@@ -34,6 +35,9 @@ app.use("/tvshows", tvShowRoutes);
 
 // Use the watchlist routes for the /watchlist endpoint
 app.use("/watchlist", watchlistRoutes);
+
+// Trending movies and tv shows
+app.use("/trending", trendingRoutes);
 
 // Start the server
 const port = process.env.PORT || 3000;
