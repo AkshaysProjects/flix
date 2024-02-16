@@ -47,7 +47,7 @@ const searchMovies = async (req, res) => {
       {
         title: { $regex: new RegExp(query, "i") },
       },
-      { projection: { title: 1, bannerUrl: 1, releaseDate: 1, rated: 1 } }
+      { projection: { title: 1, bannerUrl: 1, releaseDate: 1, type: 1 } }
     )
       .limit(20)
       .toArray();

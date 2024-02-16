@@ -60,7 +60,7 @@ const searchTVShows = async (req, res) => {
           bannerUrl: 1,
           firstAirDate: 1,
           lastAirDate: 1,
-          rated: 1,
+          type: 1,
         },
       }
     )
