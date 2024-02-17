@@ -32,7 +32,7 @@ const tvShowSchema = new mongoose.Schema({
   genres: {
     type: [String],
   },
-  plot: {
+  summary: {
     type: String,
     required: true,
   },
